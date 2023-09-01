@@ -1,0 +1,10 @@
+header {
+    background-image: url("../assets/images/logo.svg");
+    background-color: red;
+}
+
+#logo {
+    width: 5px;
+    background-color: red;
+    border: 1px solid blue;
+}

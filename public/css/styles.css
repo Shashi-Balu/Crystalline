@@ -1,0 +1,10 @@
+body {
+    background-color: #161616;
+    color: aliceblue;
+}
+header {
+    display: flex;
+}
+#logo {
+    width: 8rem;
+}
