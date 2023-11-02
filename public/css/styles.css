@@ -1,10 +1,97 @@
-body {
-    background-color: #161616;
-    color: aliceblue;
+:root {
+    --pink: #ffc0cb;
+    --brown: #53222e;
+    --green: #00755c;
+    --white: #ffffd0;
 }
-header {
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-style: italic;
+    color: var(--brown);
+    margin: 1.5%;
+    z-index: 10;
+    text-align: right;
+}
+
+.hero-images-container {
+    display: grid;
+    height: 100%;
+}
+
+.hero-images {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+    z-index: -10;
+}
+
+.hero-text {
+    color: var(--brown);
+    font-size: 8rem;
+    left: 10%;
+    position: absolute;
+    top: 25%;
+    z-index: 10;
+    font-weight: 100;
+}
+
+.circle {
+    width: 90%;
+    height: 370%;
+    background-color: var(--pink);
+    border-radius: 50%;
+    position: absolute;
+    top: -130%;
+    left: 45%;
+    opacity: 70%;
+    z-index: -10;
+}
+
+.hero-subtitle {
+    font-size: 2rem;
+    margin-left: 1rem;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.subtitle-container {
     display: flex;
+    justify-content: space-between;
 }
-#logo {
-    width: 8rem;
+
+.arrow-icon {
+    font-size: 6rem;
+    font-weight: 100;
+    border: 1px solid var(--brown);
+    border-radius: 50%;
+    text-align: center;
+    padding: 4.5rem 6rem;
+}
+
+.scroll {
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+#products {
+    position: relative;
+    margin-top: 50%;
+}
+
+.our-products {
+    margin-left: 10rem;
+    font-size: 4rem;
+    color: var(--brown);
 }

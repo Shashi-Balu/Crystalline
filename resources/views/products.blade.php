@@ -1,0 +1,1 @@
+<!-- products/index.blade.php -->
