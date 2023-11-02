@@ -2,7 +2,7 @@
 
 @section('content')
 <header>
-
+    <h1 class="logo">Crystalline</h1>
     <div class="hero-images-container">
         <img src="{{ asset('assets/images/glass-1.jpg') }}" alt="Hero-Images" class="hero-images">
         <img src="{{ asset('assets/images/glass-2.jpg') }}" alt="Hero-Images" class="hero-images">
@@ -26,3 +26,5 @@
         </div>
     </div>
 </section>
+
+@endsection
