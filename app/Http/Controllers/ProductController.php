@@ -3,80 +3,54 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Cart;
+use Session;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    // public function welcome()
-    // {
-    //     $products = [
-    //         [
-    //             'name' => 'Elegant Crystal Tumbler',
-    //             'image' => '',
-    //             'title' => 'Premium Collection',
-    //             'price' => '$24.99',
-    //         ],
-    //         [
-    //             'name' => 'Sophisticate Wine Glasses',
-    //             'image' => '',
-    //             'title' => 'Luxury Series',
-    //             'price' => '$29.99',
-    //         ],
+    function index()
+    {
+        $data = Product::all();
 
-    //         [
-    //             'name' => "Opulent Champagne Flutes",
-    //             'image' => "",
-    //             'title' => "Crystal Elegance",
-    //             'price' => "$34.99",
-    //         ],
-    //         [
-    //             'name' => "Regal Whiskey Decanter",
-    //             'image' => "",
-    //             'title' => "Royal Edition",
-    //             'price' => "$39.99",
-    //         ],
-    //         [
-    //             'name' => "Grand Goblet Set",
-    //             'image' => "",
-    //             'title' => "Opulence Series",
-    //             'price' => "$27.99",
-    //         ],
-    //         [
-    //             'name' => "Exquisite Martini Glasses",
-    //             'image' => "",
-    //             'title' => "Signature Collection",
-    //             'price' => "$31.99",
-    //         ],
-    //         [
-    //             'name' => "Majestic Highball Glasses",
-    //             'image' => "",
-    //             'title' => "Classic Style",
-    //             'price' => "$22.99",
-    //         ],
-    //         [
-    //             'name' => "Sumptuous Wine Decanter",
-    //             'image' => "",
-    //             'title' => "Vintage Charm",
-    //             'price' => "$45.99",
-    //         ],
-    //         [
-    //             'name' => "Royal Crystal Carafe",
-    //             'image' => "",
-    //             'title' => "Elite Edition",
-    //             'price' => "$49.99",
-    //         ],
-    //     ];
+        return view('product', ['products' => $data]);
+    }
+    function detail($id)
+    {
 
-    //     dd($products);
+        $data =  Product::find($id);
+        return view('detail', ['product' => $data]);
+    }
 
-    //     return view('welcome', ['products' => $products]);
-    // }
+    function addToCart(Request $req)
+    {
+        if ($req->session()->has('user')) {
+            $cart = new Cart;
+            $cart->user_id = $req->session()->get('user')['id'];
+            $cart->product_id = $req->product_id;
+            $cart->save();
+            return redirect('/');
+        } else {
+            return redirect('/login');
+        }
+    }
 
-    // ProductController.php
+    static function cartItem()
+    {
+        $userId = Session::get('user')['id'];
+        return Cart::where('user_id', $userId)->count();
+    }
 
-    // public function index()
-    // {
-    //     // $products = Product::where('on_sale', true)->take(9)->get();s
+    function cartlist()
+    {
+        $userId = Session::get('user')['id'];
+        $products = DB::table('cart')
+            ->join('products' . 'cart.product_id', '=', 'products.id')
+            ->where('cart.user_id', $userId)
+            ->select('products.*')
+            ->get();
 
-    //     return view('products.index', ['products' => $products]);
-    // }
+        return view('cartlist', ['products' => $products]);
+    }
 }

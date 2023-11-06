@@ -1,3 +1,15 @@
+<?php
+
+use App\Http\Controllers\ProductController;
+
+$total = 0;
+if (Session::has('user')) {
+    $total = ProductController::cartItem();
+}
+
+
+?>
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand logo" href="/">Crystalline</a>
@@ -21,10 +33,21 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Account</a>
                 </li>
-
-
             </ul>
 
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/cartlist">cart ({{$total}})</a></li>
+                @if(Session::has('user'))
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle"><span class="caret">{{Session::get('user')['name']}}</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </li>
+                @else
+                <li><a href="#">Login</a></li>
+                @endif
+            </ul>
         </div>
     </div>
 </nav>
