@@ -7,24 +7,25 @@
     <div class="col-sm-4">
         <div class="trending-wrapper">
             <h4>Result for Products</h4>
+            <a href="ordernow" class="btn btn-success">Order Now</a>
             @foreach($products as $item)
             <div class="row searched-item cart-list-divider">
                 <div class="col-sm-4">
                     <a href="detail/{{$item->id}}">
-                        <img src="{{$item->'image}}" alt="">
+
 
                     </a>
                 </div>
                 <div class="col-sm-4">
                     <a href="detail/{{$item->id}}">
                         <div class="">
-                            <h2>{{$item->'productName'}}</h2>
-                            <p>{{$item->'title'}}</p>
+                            <h2>{{$item->productName}}</h2>
+                            <p>{{$item->title}}</p>
                         </div>
                     </a>
                 </div>
                 <div class="col-sm-4">
-                    <button class="btn btn-warning">Remove from Cart</button>
+                    <a href="/removecart/{{$item->cart_id}}" class="btn btn-warning">Remove From Cart</a>
                 </div>
             </div>
 
