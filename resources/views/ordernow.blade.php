@@ -1,43 +1,32 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="custom-product">
-    <div class="col-sm-6">
-        <table class="table table-striped">
-            <tbody>
-                <tr>
-                    <td>Price</td>
-                    <td>{{$total}} Rupees</td>
-                </tr>
-                <tr>
-                    <td>Tax</td>
-                    <td>0 Rupees</td>
-                </tr>
-                <tr>
-                    <td>Delivery</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>Total Amount</td>
-                    <td>{{$total+100}}</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <form method="POST" action="/orderplace">
-            @csrf
-            <div class="form-group">
-                <textarea placeholder="enter your address" name="address" class="form-control"> </textarea>
-            </div>
-            <div class="form-group">
-                <label for="">Payment Method</label>
-                <p><input type="radio" value="cash" name="payment"> <span>Online Payment</span> </p>
-                <p><input type="radio" value="cash" name="payment"> <span>EMI Payment</span> </p>
-                <p><input type="radio" value="cash" name="payment"> <span>Payment on Delivery</span> </p>
-
-            </div>
-            <button type="submit" class="btn btn-default">Order Now</button>
-        </form>
+<div class="order order-now">
+    @foreach(DB::table('cart')
+    ->join('products', 'cart.product_id', 'products.id')
+    ->where('cart.user_id', Session::get('user')['id'])
+    ->select('products.*', 'cart.id as cart_id')
+    ->get() as $item)
+    <div class="order-item"><img src="{{$item->image}}" alt="{{$item->productName}}" width="200" height="200">
+        <p>Product: {{$item->productName}}</p>
+        <p>Price: {{$item->price}} Rupees</p>
+        <p>Total Amount: {{$item->price}} Rupees</p>
     </div>
+    @endforeach
+
+    <form method="POST" action="/orderplace">
+        @csrf
+        <p class="address">Address</p><textarea placeholder="enter your address" name="address" class="form-control" cols="50" rows="3"> </textarea>
+
+        <div class="payment">
+            <label class="title">Payment Method</label>
+            <p><input type="radio" value="cash" name="payment"> Online Payment</p>
+            <p><input type="radio" value="cash" name="payment"> EMI Payment</p>
+            <p><input type="radio" value="cash" name="payment"> Payment on Delivery</p>
+            <button type="submit" class="register-button">Order Now</button>
+        </div>
+
+    </form>
+
 </div>
 @endsection

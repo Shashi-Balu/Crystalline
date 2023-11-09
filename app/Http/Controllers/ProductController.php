@@ -8,6 +8,8 @@ use App\Models\Cart;
 use App\Models\Order;
 use Session;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderConfirmation;
 
 class ProductController extends Controller
 {
@@ -43,16 +45,27 @@ class ProductController extends Controller
         return Cart::where('user_id', $userId)->count();
     }
 
-    function cartList()
+    public function cartList()
     {
-        $userId = Session::get('user')['id'];
+        $userId = Session::has('user') ? Session::get('user')['id'] : null;
+
+        if (!$userId) {
+            // User is not logged in
+            return view('no-item', ['message' => 'Please Login to view your cart or Register to Add items to cart.']);
+        }
+
         $data =  DB::table('cart')
             ->join('products', 'cart.product_id', 'products.id')
             ->select('products.*', 'cart.id as cart_id')
             ->where('cart.user_id', $userId)
             ->get();
 
-        return view('cartlist', ['products' => $data]);
+        if ($data->isEmpty()) {
+            // No items in the cart
+            return view('no-item', ['message' => 'Your cart is empty.']);
+        }
+
+        return view('/cartlist', ['products' => $data]);
     }
 
     function removeCart($id)
@@ -70,9 +83,9 @@ class ProductController extends Controller
 
         return view('ordernow', ['total' => $total]);
     }
+
     function orderPlace(Request $req)
     {
-
         $userId = Session::get('user')['id'];
         $allCart = Cart::where('user_id', $userId)->get();
         foreach ($allCart as $cart) {
@@ -80,24 +93,46 @@ class ProductController extends Controller
             $order->product_id = $cart['product_id'];
             $order->user_id = $cart['user_id'];
             $order->address = $req->address;
-            $order->status = "pending";
             $order->payment_method = $req->payment;
-            $order->payment_status = "pending";
             $order->save();
         }
         Cart::where('user_id', $userId)->delete();
-        return redirect('/');
-        // return $req->input();
+
+        return view('order-place');
     }
+
 
     function myOrder()
     {
-        $userId = Session::get('user')['id'];
-        $orders = DB::table('orders')
-            ->join('products', 'orders.product_id', 'products.id')
-            ->where('orders.user_id', $userId)
-            ->get();
+        $userId = Session::has('user') ? Session::get('user')['id'] : null;
 
-        return view('myorder', ['orders' => $orders]);
+        if ($userId) {
+            $allCart = Cart::where('user_id', $userId)->get();
+
+            if ($allCart->isEmpty()) {
+                // No items in the cart
+                return view('no_items');
+            }
+
+            foreach ($allCart as $cart) {
+                $order = new Order;
+
+                $order->product_id = $cart['product_id'];
+                $order->user_id = $cart['user_id'];
+                $order->address = $req->address;
+                $order->status = "pending";
+                $order->payment_method = $req->payment;
+                $order->payment_status = "pending";
+
+                $order->save();
+            }
+
+            Cart::where('user_id', $userId)->delete();
+
+            return redirect('/');
+        } else {
+            // User is not logged in
+            return redirect('/login')->with('status', 'Please log in to make a purchase.');
+        }
     }
 }

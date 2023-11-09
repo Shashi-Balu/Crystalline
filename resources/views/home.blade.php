@@ -25,7 +25,7 @@
 
     <section>
         <div class="hero-text">
-            <h1>Crystalline</h1>
+
             <div class="subtitle-container">
                 <div class="subtitle">
                     <h3 class="hero-subtitle">Crafted for elegance</h3>

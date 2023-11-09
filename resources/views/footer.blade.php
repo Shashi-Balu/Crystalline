@@ -1,1 +1,3 @@
-<h3>Footer</h3>
+<footer class="footer-container ">
+    <p>&copy; 2023 Crystalline. All rights reserved.</p>
+</footer>

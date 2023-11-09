@@ -14,7 +14,7 @@
     font-size: 2.5rem;
     font-style: italic;
     color: var(--brown);
-    margin: 1.5%;
+    margin: -4.8% 1.5%;
     z-index: 10;
     text-align: right;
 }
@@ -86,12 +86,266 @@
 }
 
 #products {
-    position: relative;
-    margin-top: 50%;
+    /* position: relative; */
+    margin-top: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .our-products {
-    margin-left: 10rem;
     font-size: 4rem;
     color: var(--brown);
+}
+
+.navbar {
+    display: flex;
+    margin: 2rem 1.2rem;
+}
+
+.link {
+    text-decoration: none;
+    color: var(--brown);
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+}
+
+#products-container {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: space-evenly;
+    column-gap: 5rem;
+}
+
+.product img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.product h3 {
+    font-size: 2rem;
+    color: var(--brown);
+}
+.product p {
+    font-size: 1.4rem;
+    color: #505050;
+    font-family: sans-serif;
+}
+
+.button {
+    background-color: #fff;
+    font-size: 1.5rem;
+    padding: 1.2rem 2rem;
+    border: 1px solid var(--brown);
+    color: var(--brown);
+    cursor: pointer;
+}
+
+.all-products {
+    margin-top: 5rem;
+    text-decoration: none;
+    color: var(--brown);
+}
+
+.why-crystalline {
+    text-align: center;
+    margin-top: 4rem;
+    font-size: 4rem;
+    color: var(--brown);
+}
+
+.why-para {
+    font-size: 1.5rem;
+    margin-left: 5rem;
+}
+
+.side-img {
+    width: 400px;
+    height: auto;
+}
+
+.para-container {
+    margin-top: 4rem;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 7rem;
+}
+
+.footer-container {
+    background-color: var(--brown);
+    color: var(--white);
+    margin-top: 4rem;
+    padding: 3rem 0;
+    text-align: center;
+    margin-top: 14rem;
+}
+
+.footer-extra {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+.custom-products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.item-img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    margin: 4rem 0 1rem 0;
+}
+
+.item-tag {
+    text-decoration: none;
+}
+
+.title {
+    font-size: 2rem;
+    color: var(--brown);
+}
+
+.price,
+.name {
+    font-size: 1.4rem;
+    color: #505050;
+}
+
+.details-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+.item-text {
+    margin-top: 4rem;
+}
+
+.item-text .price,
+.item-text .title {
+    color: var(--brown);
+    margin: 2rem 0;
+}
+
+.cart-button,
+.login-button {
+    margin: 2rem 0;
+    background-color: #fff;
+    color: #00755c;
+}
+
+.cart-button,
+.buy-button,
+.login-button,
+.register-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #00755c;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.buy-button,
+.register-button {
+    background-color: var(--green);
+    color: #fff;
+}
+
+.go-back {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    margin-top: 4rem;
+}
+
+.text-center {
+    text-align: center;
+    margin: 4rem;
+    font-size: 1.5rem;
+}
+
+.text-center h3 {
+    margin-bottom: 4rem;
+}
+
+.custom-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 5rem;
+}
+
+.form-group {
+    padding: 0.5rem;
+}
+
+.form-group label {
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    margin-right: 1rem;
+    display: flex;
+    color: var(--green);
+}
+
+.form-group input {
+    width: 300px;
+    padding: 0.5rem;
+}
+.custom-login button {
+    margin: 0.5rem;
+}
+
+.order {
+    margin-top: 4rem;
+}
+
+.heading {
+    text-align: center;
+}
+
+.link h1 {
+    font-style: italic;
+    font-family: serif;
+    margin-top: -0.4rem;
+}
+
+.order-now {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.order p {
+    font-size: 1.4rem;
+    font-family: sans-serif;
+    margin: 0.5rem 0;
+}
+
+.payment {
+    margin-top: 5rem;
+    text-align: center;
+}
+
+.payment p {
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.address {
+    text-align: center;
+}
+
+textarea {
+    font-size: 1rem;
 }

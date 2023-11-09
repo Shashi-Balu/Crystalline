@@ -1,36 +1,27 @@
 @extends('layouts.app')
 @section('content')
-<div class="custom-product">
-    <div class="col-sm-4">
-        <a href="">Filter</a>
-    </div>
-    <div class="col-sm-4">
-        <div class="trending-wrapper">
-            <h4>Result for Products</h4>
-            <a href="ordernow" class="btn btn-success">Order Now</a>
-            @foreach($products as $item)
-            <div class="row searched-item cart-list-divider">
-                <div class="col-sm-4">
-                    <a href="detail/{{$item->id}}">
 
+<h2 class="title heading">My Cart</h2>
 
-                    </a>
-                </div>
-                <div class="col-sm-4">
-                    <a href="detail/{{$item->id}}">
-                        <div class="">
-                            <h2>{{$item->productName}}</h2>
-                            <p>{{$item->title}}</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-sm-4">
-                    <a href="/removecart/{{$item->cart_id}}" class="btn btn-warning">Remove From Cart</a>
-                </div>
-            </div>
-
-            @endforeach
+@foreach($products as $item)
+<div class="details-container">
+    <img src="{{$item->image }}" alt="" class="item-img" width="200" height="200">
+    <div class="item-text">
+        <div class="">
+            <h4 class="title">{{$item->productName}}</h4>
+            <p class="price">{{$item->price}}</p>
+            <p class="name">{{$item->title}}</p>
         </div>
+
+        <div class="order">
+            <a href="ordernow" class="register-button">Order Now</a>
+            <a href="/removecart/{{$item->cart_id}}" class="login-button">Remove From Cart</a>
+
+        </div>
+
     </div>
+
 </div>
+
+@endforeach
 @endsection

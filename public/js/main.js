@@ -7,64 +7,27 @@ document.addEventListener("DOMContentLoaded", function () {
         images[index].style.opacity = 1;
         index = (index + 1) % images.length;
     }
-    setInterval(showImage, 10000);
+    setInterval(showImage, 5000);
 
     const productsData = [
         {
             name: "Elegant Crystal Tumbler",
-            image: "",
+            image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             title: "Premium Collection",
             price: "$24.99",
         },
         {
             name: "Sophisticate Wine Glasses",
-            image: "",
+            image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8ZHJpbmt8ZW58MHx8MHx8fDA%3D",
             title: "Luxury Series",
             price: "$29.99",
         },
         {
             name: "Opulent Champagne Flutes",
-            image: "",
+            image: "https://images.unsplash.com/photo-1497534446932-c925b458314e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGRyaW5rfGVufDB8fDB8fHww",
             title: "Crystal Elegance",
             price: "$34.99",
         },
-        {
-            name: "Regal Whiskey Decanter",
-            image: "",
-            title: "Royal Edition",
-            price: "$39.99",
-        },
-        {
-            name: "Grand Goblet Set",
-            image: "",
-            title: "Opulence Series",
-            price: "$27.99",
-        },
-        {
-            name: "Exquisite Martini Glasses",
-            image: "",
-            title: "Signature Collection",
-            price: "$31.99",
-        },
-        {
-            name: "Majestic Highball Glasses",
-            image: "",
-            title: "Classic Style",
-            price: "$22.99",
-        },
-        {
-            name: "Sumptuous Wine Decanter",
-            image: "",
-            title: "Vintage Charm",
-            price: "$45.99",
-        },
-        {
-            name: "Royal Crystal Carafe",
-            image: "",
-            title: "Elite Edition",
-            price: "$49.99",
-        },
-        // ... Repeat for other products
     ];
 
     // Get the products container
@@ -88,6 +51,11 @@ document.addEventListener("DOMContentLoaded", function () {
         const productPrice = document.createElement("p");
         productPrice.textContent = `Price: ${product.price}`;
 
+        const productImage = document.createElement("img");
+        productImage.src = product.image;
+        productDiv.appendChild(productImage);
+
+        productDiv.appendChild(productImage);
         productDiv.appendChild(productName);
         productDiv.appendChild(productTitle);
         productDiv.appendChild(productPrice);
